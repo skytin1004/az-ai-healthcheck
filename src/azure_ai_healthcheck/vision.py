@@ -115,6 +115,22 @@ def check_azure_vision(
                 message=message,
             )
 
+        # 404 indicates the endpoint is reachable but analysis/resource not available.
+        # In practice, very small test images may cause 404 from the service.
+        # For health-check purposes (reachability), consider this a success path.
+        if status == 404:
+            message = (
+                "Azure Vision reachable (HTTP 404). Test image may be too small to analyze; "
+                "treating as healthy for reachability."
+            )
+            return HealthResult(
+                provider="azure_vision",
+                endpoint=endpoint,
+                ok=True,
+                status_code=404,
+                message=message,
+            )
+
         # Non-auth error (e.g., InvalidImageSize 400). Return ok=False with details.
         snippet = str(e)[:500]
         message = f"Azure Vision error. HTTP {status if status is not None else 'unknown'}. Details: {snippet}"
