@@ -5,7 +5,7 @@ import struct
 import zlib
 from typing import Optional
 
-from .models import HealthResult
+from azure_ai_healthcheck.models import HealthResult
 
 logger = logging.getLogger(__name__)
 

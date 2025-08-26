@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import requests
 
-from .models import HealthResult
+from azure_ai_healthcheck.models import HealthResult
 
 logger = logging.getLogger(__name__)
 
