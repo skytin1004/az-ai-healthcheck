@@ -1,11 +1,11 @@
 # az-ai-healthcheck
 
-[![Python package](https://img.shields.io/pypi/v/azure-ai-healthcheck?color=4BA3FF)](https://pypi.org/project/azure-ai-healthcheck/)
-[![License: MIT](https://img.shields.io/github/license/skytin1004/azure-ai-healthcheck?color=4BA3FF)](https://github.com/skytin1004/azure-ai-healthcheck/blob/main/LICENSE)
+[![Python package](https://img.shields.io/pypi/v/az-ai-healthcheck?color=4BA3FF)](https://pypi.org/project/az-ai-healthcheck/)
+[![License: MIT](https://img.shields.io/github/license/skytin1004/az-ai-healthcheck?color=4BA3FF)](https://github.com/skytin1004/az-ai-healthcheck/blob/main/LICENSE)
 
-[![GitHub contributors](https://img.shields.io/github/contributors/skytin1004/azure-ai-healthcheck.svg)](https://GitHub.com/skytin1004/azure-ai-healthcheck/graphs/contributors/)
-[![GitHub issues](https://img.shields.io/github/issues/skytin1004/azure-ai-healthcheck.svg)](https://GitHub.com/skytin1004/azure-ai-healthcheck/issues/)
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/skytin1004/azure-ai-healthcheck.svg)](https://GitHub.com/skytin1004/azure-ai-healthcheck/pulls/)
+[![GitHub contributors](https://img.shields.io/github/contributors/skytin1004/az-ai-healthcheck.svg)](https://GitHub.com/skytin1004/az-ai-healthcheck/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/skytin1004/az-ai-healthcheck.svg)](https://GitHub.com/skytin1004/az-ai-healthcheck/issues/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/skytin1004/az-ai-healthcheck.svg)](https://GitHub.com/skytin1004/az-ai-healthcheck/pulls/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 Lightweight health checks for Azure OpenAI and Azure AI Vision — no heavy SDKs required for OpenAI, and an optional extra for Vision.
