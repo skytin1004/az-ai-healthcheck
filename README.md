@@ -20,13 +20,13 @@ Lightweight health checks for Azure OpenAI and Azure AI Vision — no heavy SDKs
 Core (OpenAI only):
 
 ```bash
-pip install azure-ai-healthcheck
+pip install az-ai-healthcheck
 ```
 
 With Vision support:
 
 ```bash
-pip install "azure-ai-healthcheck[vision]"
+pip install "az-ai-healthcheck[vision]"
 ```
 
 ## Quickstart
@@ -35,7 +35,7 @@ Set your credentials (example using environment variables), then call the checks
 
 ```python
 import os
-from azure_ai_healthcheck import check_azure_openai, check_azure_ai_vision
+from az_ai_healthcheck import check_azure_openai, check_azure_ai_vision
 
 res_aoai = check_azure_openai(
     endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
@@ -77,7 +77,7 @@ print(res_vision)
 ### Azure OpenAI (Chat Completions) health check
 
 ```python
-from azure_ai_healthcheck import check_azure_openai
+from az_ai_healthcheck import check_azure_openai
 
 res = check_azure_openai(
     endpoint="https://my-endpoint.openai.azure.com",
@@ -96,7 +96,7 @@ Behavior:
 ### Azure AI Vision (Image Analysis) health check
 
 ```python
-from azure_ai_healthcheck import check_azure_ai_vision
+from az_ai_healthcheck import check_azure_ai_vision
 
 res = check_azure_ai_vision(
     endpoint="https://my-cv.cognitiveservices.azure.com",
@@ -129,7 +129,7 @@ Use these checks in your pipelines or app startup to fail fast with clear guidan
 
 ```python
 def app_startup_probe():
-    from azure_ai_healthcheck import check_azure_openai
+    from az_ai_healthcheck import check_azure_openai
     res = check_azure_openai(endpoint=..., api_key=..., api_version=..., deployment=...)
     if not res.ok:
         raise RuntimeError(f"OpenAI health check failed: {res.message}")
