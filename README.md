@@ -2,9 +2,6 @@
 
 [![Python package](https://img.shields.io/pypi/v/azure-ai-healthcheck?color=4BA3FF)](https://pypi.org/project/azure-ai-healthcheck/)
 [![License: MIT](https://img.shields.io/github/license/skytin1004/azure-ai-healthcheck?color=4BA3FF)](https://github.com/skytin1004/azure-ai-healthcheck/blob/main/LICENSE)
-[![Downloads](https://static.pepy.tech/badge/azure-ai-healthcheck)](https://pepy.tech/project/azure-ai-healthcheck)
-[![Downloads](https://static.pepy.tech/badge/azure-ai-healthcheck/month)](https://pepy.tech/project/azure-ai-healthcheck)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/skytin1004/azure-ai-healthcheck.svg)](https://GitHub.com/skytin1004/azure-ai-healthcheck/graphs/contributors/)
 [![GitHub issues](https://img.shields.io/github/issues/skytin1004/azure-ai-healthcheck.svg)](https://GitHub.com/skytin1004/azure-ai-healthcheck/issues/)
