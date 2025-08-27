@@ -34,6 +34,7 @@ def check_azure_openai(
         )
 
     url = _build_chat_url(endpoint, api_version, deployment)
+    provider = "azure_openai"
     headers = {
         "api-key": api_key,
         "Content-Type": "application/json",
@@ -68,7 +69,7 @@ def check_azure_openai(
 
     if status == 200:
         return HealthResult(
-            provider="azure_openai",
+            provider=provider,
             endpoint=endpoint,
             ok=True,
             status_code=200,
@@ -82,10 +83,26 @@ def check_azure_openai(
         )
         logger.warning(message)
         return HealthResult(
-            provider="azure_openai",
+            provider=provider,
             endpoint=endpoint,
             ok=False,
             status_code=status,
+            message=message,
+        )
+
+    if status == 404:
+        message = (
+            "Azure OpenAI returned HTTP 404 (Not Found). API key may be valid, but the endpoint/path, "
+            "api-version, or deployment name is likely incorrect. Verify the endpoint format (no extra path), "
+            "the api-version, and the deployment name. Response snippet: "
+            f"{text_snippet}"
+        )
+        logger.warning(message)
+        return HealthResult(
+            provider=provider,
+            endpoint=endpoint,
+            ok=False,
+            status_code=404,
             message=message,
         )
 
@@ -95,7 +112,7 @@ def check_azure_openai(
     )
     logger.warning(message)
     return HealthResult(
-        provider="azure_openai",
+        provider=provider,
         endpoint=endpoint,
         ok=False,
         status_code=status,

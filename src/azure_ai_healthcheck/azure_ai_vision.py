@@ -61,7 +61,7 @@ def _get_image_analysis_client(endpoint: str, api_key: str):  # pragma: no cover
     return client, VisualFeatures
 
 
-def check_azure_vision(
+def check_azure_ai_vision(
     endpoint: str,
     api_key: str,
     timeout: float = 10.0,
@@ -71,8 +71,7 @@ def check_azure_vision(
 
     Behavior:
     - Success -> ok=True
-    - Else (401/403 and other non-2xx/errors) -> ok=False with details
-    - 404 from service is considered reachable (ok=True) for health-check purposes
+    - Else (401/403 and other non-2xx/errors, including 404) -> ok=False with details
     """
     if not endpoint or not api_key:
         raise ValueError("Missing required Azure Vision parameters. Verify endpoint and api_key.")
@@ -115,18 +114,18 @@ def check_azure_vision(
                 message=message,
             )
 
-        # 404 indicates the endpoint is reachable but analysis/resource not available.
-        # In practice, very small test images may cause 404 from the service.
-        # For health-check purposes (reachability), consider this a success path.
+        # 404: Treat as failure but give a clear hint about likely causes.
         if status == 404:
             message = (
-                "Azure Vision reachable (HTTP 404). Test image may be too small to analyze; "
-                "treating as healthy for reachability."
+                "Azure Vision returned HTTP 404 (Not Found). This often indicates an incorrect endpoint/path, "
+                "or in some cases the test image may be too small for analysis. Verify the endpoint format and "
+                "consider using a slightly larger image."
             )
+            logger.warning(message)
             return HealthResult(
                 provider=provider,
                 endpoint=endpoint,
-                ok=True,
+                ok=False,
                 status_code=404,
                 message=message,
             )

@@ -1,8 +1,5 @@
-import types
-import pytest
-
-import azure_ai_healthcheck.vision as vision_mod
-from azure_ai_healthcheck import check_azure_vision
+import azure_ai_healthcheck.azure_ai_vision as vision_mod
+from azure_ai_healthcheck import check_azure_ai_vision
 
 
 class DummyClient:
@@ -34,7 +31,7 @@ def patch_client(monkeypatch, behavior: str, status: int | None = None, message:
 def test_vision_success(monkeypatch):
     patch_client(monkeypatch, behavior="ok")
 
-    res = check_azure_vision(endpoint="https://cv.azure.com", api_key="key")
+    res = check_azure_ai_vision(endpoint="https://cv.azure.com", api_key="key")
     assert res.ok is True
     assert res.status_code == 200
 
@@ -42,7 +39,7 @@ def test_vision_success(monkeypatch):
 def test_vision_401_raises(monkeypatch):
     patch_client(monkeypatch, behavior="err", status=401, message="Unauthorized")
 
-    res = check_azure_vision(endpoint="https://cv.azure.com", api_key="key")
+    res = check_azure_ai_vision(endpoint="https://cv.azure.com", api_key="key")
     assert res.ok is False
     assert res.status_code == 401
     assert "401/403" in res.message
@@ -52,7 +49,7 @@ def test_vision_400_non_strict(monkeypatch, caplog):
     patch_client(monkeypatch, behavior="err", status=400, message="InvalidImageSize")
 
     with caplog.at_level("WARNING"):
-        res = check_azure_vision(
+        res = check_azure_ai_vision(
             endpoint="https://cv.azure.com", api_key="key", use_min_size_image=False
         )
     assert res.ok is False
@@ -60,11 +57,23 @@ def test_vision_400_non_strict(monkeypatch, caplog):
     assert "HTTP 400" in res.message
 
 
+def test_vision_404_returns_false_with_guidance(monkeypatch, caplog):
+    patch_client(monkeypatch, behavior="err", status=404, message="Not Found")
+
+    with caplog.at_level("WARNING"):
+        res = check_azure_ai_vision(endpoint="https://cv.azure.com", api_key="key")
+    assert res.ok is False
+    assert res.status_code == 404
+    # Message should hint endpoint/path or small image as possible causes
+    assert "404" in res.message
+    assert ("endpoint" in res.message or "path" in res.message) or ("small" in res.message or "larger" in res.message)
+
+
 def test_vision_400_returns_false_no_exception(monkeypatch, caplog):
     patch_client(monkeypatch, behavior="err", status=400, message="Bad Request")
 
     with caplog.at_level("WARNING"):
-        res = check_azure_vision(endpoint="https://cv.azure.com", api_key="key")
+        res = check_azure_ai_vision(endpoint="https://cv.azure.com", api_key="key")
     assert res.ok is False
     assert res.status_code == 400
     assert "HTTP 400" in res.message
