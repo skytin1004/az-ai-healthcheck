@@ -9,7 +9,7 @@ class HealthResult:
     """Result of a health check.
 
     Attributes:
-        provider: Provider identifier, e.g., "azure_openai" or "azure_vision".
+        provider: Provider identifier, e.g., "azure_openai" or "azure_ai_vision".
         endpoint: The endpoint URL that was checked.
         ok: True if the check succeeded (HTTP 200/success path).
         status_code: HTTP status code when available.
