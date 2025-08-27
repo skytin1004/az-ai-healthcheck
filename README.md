@@ -1,4 +1,4 @@
-# azure-ai-healthcheck
+# az-ai-healthcheck
 
 [![Python package](https://img.shields.io/pypi/v/azure-ai-healthcheck?color=4BA3FF)](https://pypi.org/project/azure-ai-healthcheck/)
 [![License: MIT](https://img.shields.io/github/license/skytin1004/azure-ai-healthcheck?color=4BA3FF)](https://github.com/skytin1004/azure-ai-healthcheck/blob/main/LICENSE)
