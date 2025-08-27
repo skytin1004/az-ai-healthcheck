@@ -72,6 +72,7 @@ def check_azure_vision(
     Behavior:
     - Success -> ok=True
     - Else (401/403 and other non-2xx/errors) -> ok=False with details
+    - 404 from service is considered reachable (ok=True) for health-check purposes
     """
     if not endpoint or not api_key:
         raise ValueError("Missing required Azure Vision parameters. Verify endpoint and api_key.")
@@ -79,12 +80,11 @@ def check_azure_vision(
     width = 50 if use_min_size_image else 1
     height = 50 if use_min_size_image else 1
     image_bytes = _generate_png_bytes(width, height)
+    provider = "azure_ai_vision"
 
-    try:
-        client, VisualFeatures = _get_image_analysis_client(endpoint, api_key)
-    except ImportError:
-        # Surface a clear error to user irrespective of strict
-        raise
+    # Lazily import/create client; ImportError will bubble up with a helpful message from
+    # _get_image_analysis_client() if the optional SDK is not installed.
+    client, VisualFeatures = _get_image_analysis_client(endpoint, api_key)
 
     try:
         client.analyze(
@@ -94,7 +94,7 @@ def check_azure_vision(
         )
         # If analyze returns without exception, consider success
         return HealthResult(
-            provider="azure_vision",
+            provider=provider,
             endpoint=endpoint,
             ok=True,
             status_code=200,
@@ -108,7 +108,7 @@ def check_azure_vision(
             )
             logger.warning(message)
             return HealthResult(
-                provider="azure_vision",
+                provider=provider,
                 endpoint=endpoint,
                 ok=False,
                 status_code=status,
@@ -124,7 +124,7 @@ def check_azure_vision(
                 "treating as healthy for reachability."
             )
             return HealthResult(
-                provider="azure_vision",
+                provider=provider,
                 endpoint=endpoint,
                 ok=True,
                 status_code=404,
@@ -133,10 +133,10 @@ def check_azure_vision(
 
         # Non-auth error (e.g., InvalidImageSize 400). Return ok=False with details.
         snippet = str(e)[:500]
-        message = f"Azure Vision error. HTTP {status if status is not None else 'unknown'}. Details: {snippet}"
+        message = f"Azure AI Vision error. HTTP {status if status is not None else 'unknown'}. Details: {snippet}"
         logger.warning(message)
         return HealthResult(
-            provider="azure_vision",
+            provider=provider,
             endpoint=endpoint,
             ok=False,
             status_code=status,
