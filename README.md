@@ -111,15 +111,6 @@ print(res.ok, res.status_code, res.message)
 - `use_min_size_image=False` can trigger 400 (e.g., InvalidImageSize) → returns ok=False with details.
 - 404 is treated as failure with guidance (often wrong endpoint/path; occasionally an image too small to analyze).
 
-## HealthResult
-
-```python
-from azure_ai_healthcheck import HealthResult
-# dataclass fields: provider, endpoint, ok, status_code, message
-```
-
-Providers: `"azure_openai"`, `"azure_ai_vision"`.
-
 ## Notes
 
 - Azure OpenAI uses `requests` only; no SDK dependency.
