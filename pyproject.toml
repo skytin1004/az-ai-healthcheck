@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "az-ai-healthcheck"
-version = "0.1.2"
+version = "0.1.3"
 description = "Lightweight health checks for Azure OpenAI and Azure AI Vision"
 authors = ["Minseok Song <minseok.song@mssong.com>"]
 repository = "https://github.com/skytin1004/az-ai-healthcheck"
 license = "MIT"
 readme = "README.md"
 keywords = ["azure", "openai", "vision", "healthcheck", "monitoring"]
-packages = [{ include = "azure_ai_healthcheck", from = "src" }]
+packages = [{ include = "az_ai_healthcheck", from = "src" }]
  
 [tool.poetry.dependencies]
 python = ">=3.10"
