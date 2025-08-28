@@ -1,5 +1,5 @@
-import azure_ai_healthcheck.azure_ai_vision as vision_mod
-from azure_ai_healthcheck import check_azure_ai_vision
+import az_ai_healthcheck.azure_ai_vision as vision_mod
+from az_ai_healthcheck import check_azure_ai_vision
 
 
 class DummyClient:

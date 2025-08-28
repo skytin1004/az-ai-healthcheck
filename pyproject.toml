@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "az-ai-healthcheck"
-version = "0.1.4"
+version = "0.1.5"
 description = "Lightweight health checks for Azure OpenAI and Azure AI Vision"
 authors = ["Minseok Song <minseok.song@mssong.com>"]
 repository = "https://github.com/skytin1004/az-ai-healthcheck"

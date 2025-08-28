@@ -1,5 +1,5 @@
-import azure_ai_healthcheck.azure_openai as openai_mod
-from azure_ai_healthcheck import check_azure_openai
+import az_ai_healthcheck.azure_openai as openai_mod
+from az_ai_healthcheck import check_azure_openai
 
 
 class DummyResp:
