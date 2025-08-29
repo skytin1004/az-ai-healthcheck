@@ -2,6 +2,8 @@
 
 [![Python package](https://img.shields.io/pypi/v/az-ai-healthcheck?color=4BA3FF)](https://pypi.org/project/az-ai-healthcheck/)
 [![License: MIT](https://img.shields.io/github/license/skytin1004/az-ai-healthcheck?color=4BA3FF)](https://github.com/skytin1004/az-ai-healthcheck/blob/main/LICENSE)
+[![Downloads](https://static.pepy.tech/badge/az-ai-healthcheck)](https://pepy.tech/project/az-ai-healthcheck)
+[![Downloads](https://static.pepy.tech/badge/az-ai-healthcheck/month)](https://pepy.tech/project/az-ai-healthcheck)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/skytin1004/az-ai-healthcheck.svg)](https://GitHub.com/skytin1004/az-ai-healthcheck/graphs/contributors/)
 [![GitHub issues](https://img.shields.io/github/issues/skytin1004/az-ai-healthcheck.svg)](https://GitHub.com/skytin1004/az-ai-healthcheck/issues/)
